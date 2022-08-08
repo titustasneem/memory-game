@@ -18,6 +18,7 @@ body{
   display: flex;
   flex-wrap: wrap;
   perspective: 1000px;
+  margin-right: 20%;
 }
 
 .memory-card {
@@ -61,3 +62,9 @@ body{
 img{
   width: 100px;
 } */
+
+
+  /* #timer {
+    margin-top: 1rem;
+    font-size: 2rem;
+  } */
