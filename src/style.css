@@ -1,28 +1,42 @@
+/* add reset to all items */
+/* box sizing property handles how padding and border will be added to an element*/
+ /* default value for box-sizing is content box */
+ /* which means that any padding or border will be added to it's total width and height*/
+ /* border-box adds padding and border without changing it's dimensions */
+ /* so it shrinks it's available space while keepng it's original size */
+/* either option, margin will never be accounted as elements dimensions */
 * {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+
+/* vh is viewport height */
+/* vh is the visible area of the web page */
 body{
   height: 100vh;
-  background-color: blue;
-  display: flex;
+  background-color: rgba(34, 107, 101, 0.477);
+  /* display: flex; */
 }
 
 .memory-game {
-  border: 2px solid rgb(255, 255, 255);
-  width: 640px;
-  height: 640px;
-  margin: auto;
+  border: 5px solid rgb(0, 0, 0);
+  width: 750px;
+  height: 650px;
+  /* margin: auto; */
+  margin-top: 6%;
+  margin-left: 30%;
   display: flex;
   flex-wrap: wrap;
   perspective: 1000px;
-  margin-right: 20%;
 }
 
-.memory-card {
-  /* border: 2px solid greenyellow; */
+
+
+ .memory-card {
+  border: 5px solid rgba(0, 0, 0, 0.579);
   width: calc(25% - 10px);
   height: calc(33.333% - 10px);
   margin: 5px;
@@ -30,41 +44,43 @@ body{
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform .5s;
-}
+} 
 
-
-.memory-card:active{
+/* when clicks it is active, sort og toggle */
+ .memory-card:active{
   transform:scale(.97);
   transition: transform .2s;
-}
+} 
 
-.memory-card.flip{
+/* when flip class is present, rotate  */
+  .memory-card.flip{
   transform: rotateY(180deg);
-}
+}  
 
-.front-face, .back-face {
+ .front-face, .back-face {
    width:  100%; 
    height: 100%; 
   padding: 20px;
   border-radius: 5px;
-  border: 2px solid purple;
+  /* border: 5px solid rgb(0, 0, 0); */
   position: absolute;
-  background-color: aquamarine;
-  backface-visibility: hidden;
-}
+  background-color: rgb(0, 0, 0);
+   backface-visibility: hidden; 
+} 
 
 
-.front-face{
+  .front-face{
   transform: rotateY(180deg);
-}
+}   
 
-/* 
-img{
+
+/* img{
   width: 100px;
-} */
+}  */
 
 
-  /* #timer {
+   #timer {
     margin-top: 1rem;
+    margin-left: 36%;
     font-size: 2rem;
-  } */
+  } 
