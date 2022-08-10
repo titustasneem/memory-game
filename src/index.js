@@ -1,14 +1,30 @@
 const memoryCards = document.querySelectorAll(".memory-card");
-// --------------------------
+
 let matchCounter = 0;
 let flippedCards = false;
 let lockBoard = false;
 let cardOne, cardTwo;
-// --------------------------
-(function beginShuffle(){
-  shuffleMemoryCards()
+
+(function beginShuffle() {
+  shuffleMemoryCards();
 })();
-// -------------------------------------------------------------
+
+function matchMemoryCards(firstCard, secondCard) {
+  let foundMatch = firstCard === secondCard;
+
+  if (foundMatch) {
+    matchCounter++;
+    disableCardClick();
+  } else {
+    unflipCards();
+  }
+
+  if (matchCounter == memoryCards.length / 2) {
+    window.alert("Congratulations! You Won!");
+    setTimeout(() => location.reload(), 2000);
+  }
+}
+
 function flipMemoryCard() {
   if (lockBoard) {
     return;
@@ -21,37 +37,27 @@ function flipMemoryCard() {
   this.classList.add("flip");
 
   if (!flippedCards) {
-    // first click
     flippedCards = true;
     cardOne = this;
     return;
   } else {
-    // second click
     flippedCards = false;
     cardTwo = this;
   }
-  matchMemoryCards();
+  matchMemoryCards(cardOne.dataset.name, cardTwo.dataset.name);
 }
-// ------------------------------------------------------------
 
-function matchMemoryCards() {
-  let foundMatch = cardOne.dataset.name === cardTwo.dataset.name;
-
-  if (foundMatch) {
-    matchCounter++;
-    disableCardClick();
-  } else {
-    unflipCards();
-  }
+function resetBoard() {
+  [flippedCards, lockBoard] = [false, false];
+  [cardOne, cardTwo] = [null, null];
 }
-// -----------------------------------------------------------------------
+
 function disableCardClick() {
   cardOne.removeEventListener("click", flipMemoryCard);
   cardTwo.removeEventListener("click", flipMemoryCard);
 
   resetBoard();
 }
-// -------------------------------------------------------------------------
 
 function unflipCards() {
   lockBoard = true;
@@ -62,16 +68,10 @@ function unflipCards() {
     lockBoard = false;
     resetBoard();
   }, 1000);
+  return true;
 }
-// ----------------------------------------------------------------------------
-function resetBoard() {
-  [flippedCards, lockBoard] = [false, false];
-  [cardOne, cardTwo] = [null, null];
-}
-// -----------------------------------------------------------------------------
 
 memoryCards.forEach((card) => card.addEventListener("click", flipMemoryCard));
-// --------------------------------------------------------------------------------------
 
 function shuffleMemoryCards() {
   memoryCards.forEach((card) => {
@@ -80,33 +80,12 @@ function shuffleMemoryCards() {
   });
 }
 
-// ---------------------------------------------------------------------------------------
-
-function countdownTimer() {
-  const timer = document.getElementById("timer");
-  let seconds = 25;
-  const interval = setInterval(() => {
-    seconds--;
-    timer.innerHTML = `Time left: ${seconds} second / seconds`;
-
-    if (matchCounter == memoryCards.length / 2) {
-      clearInterval(interval);
-      window.alert("Congratulations! You Won!");
-      setTimeout(() => location.reload(), 2000);
-    } else if (seconds < 1) {
-      clearInterval(interval);
-      alert("You have run out of time. Try again...");
-      setTimeout(() => location.reload(), 2000);
-    }
-  }, 1000);
-}
-countdownTimer();
-// ----------------------------------------------------------------------
-
-module.exports = { memoryCards,
+module.exports = {
+  memoryCards,
+  matchMemoryCards,
   flippedCards,
   disableCardClick,
   unflipCards,
   resetBoard,
   shuffleMemoryCards,
-  countdownTimer };
+};
