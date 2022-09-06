@@ -9,24 +9,43 @@
 body {
   height: 100vh;
   background-color: rgba(34, 107, 101, 0.477);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .memory-game {
   border: 5px solid rgb(0, 0, 0);
-  width: 650px;
-  height:550px;
+  width: 640px;
+  height: 550px;
+
   margin: auto;
   margin-top: 2%;
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex; */
+  /* flex-wrap: wrap;  */
   perspective: 1000px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
+  /* grid-template-columns: repeat(2, auto); */
+
+  grid-gap: 10px;
 }
 
-.memory-card {
+.memory-card0,
+.memory-card1,
+.memory-card2,
+.memory-card3,
+.memory-card4,
+.memory-card5,
+.memory-card6,
+.memory-card7,
+.memory-card8,
+.memory-card9,
+.memory-card10,
+.memory-card11 {
   border: 5px solid rgba(0, 0, 0, 0.579);
-  width: calc(25% - 10px);
-  height: calc(33.333% - 10px);
+  /* width: 180px; */
+
+  /* width: calc(25% - 10px); */
+  /* height: calc(33.333% - 10px); */
   margin: 5px;
   position: relative;
   transform: scale(1);
@@ -34,12 +53,34 @@ body {
   transition: transform 0.5s;
 }
 
-.memory-card:active {
+.memory-card0:active,
+.memory-card1:active,
+.memory-card2:active,
+.memory-card3:active,
+.memory-card4:active,
+.memory-card5:active,
+.memory-card6:active,
+.memory-card7:active,
+.memory-card8:active,
+.memory-card9:active,
+.memory-card10:active,
+.memory-card11:active {
   transform: scale(0.97);
   transition: transform 0.2s;
 }
 
-.memory-card.flip {
+.memory-card0.flip,
+.memory-card1.flip,
+.memory-card2.flip,
+.memory-card3.flip,
+.memory-card4.flip,
+.memory-card5.flip,
+.memory-card6.flip,
+.memory-card7.flip,
+.memory-card8.flip,
+.memory-card9.flip,
+.memory-card10.flip,
+.memory-card11.flip {
   transform: rotateY(180deg);
 }
 
@@ -57,3 +98,20 @@ body {
 .front-face {
   transform: rotateY(180deg);
 }
+
+ 
+#testinggg{
+  width: 120px;
+  height:120px; 
+  background-color: black;
+}
+
+.tester{
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 640px;
+  height:550px; 
+  border: 2px solid black;
+  background-color: blueviolet;
+  
+} 

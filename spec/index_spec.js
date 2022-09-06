@@ -17,9 +17,9 @@ describe("memoryCards", function () {
   });
 });
 
-describe("flippedCards", function () {
+describe("isCardFlipped", function () {
   it("should check flip the card onto the front-face when clicked on", function () {
-    expect(game.flippedCards).toBeDefined();
+    expect(game.isCardFlipped).toBeDefined();
   });
 });
 
