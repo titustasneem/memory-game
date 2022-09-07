@@ -1,4 +1,4 @@
-// const mkCharacters = [
+// const gameCharacterArray = [
 //   "Johnny",
 //   // "Johnny",
 //   "kano",
@@ -13,16 +13,14 @@
 //   "Sonya",
 // ];
 
-// for (let i = 0; i < mkCharacters.length; i++) {
-//   let j = Math.floor(Math.random() * mkCharacters.length);
-//   let temp = mkCharacters[i];
-//   mkCharacters[i] = mkCharacters[j];
-//   mkCharacters[j] = temp;
+// for (let i = 0; i < gameCharacterArray.length; i++) {
+//   let j = Math.floor(Math.random() * gameCharacterArray.length);
+//   let temp = gameCharacterArray[i];
+//   gameCharacterArray[i] = gameCharacterArray[j];
+//   gameCharacterArray[j] = temp;
 // }
 
-// let randomMkCharacters = [];
-
-
+// let randomGameCharacter = [];
 
 // let matchCounter = 0;
 // let isCardFlipped = false;
@@ -47,7 +45,6 @@
 // // --------------------------------------------------------------------------------------
 
 // function flipMemoryCard(num) {
-  
 
 //   // console.log(num);
 //   const memoryCards = document.querySelector(`.memory-card${num}`);
@@ -104,7 +101,7 @@
 // // --------------------------------------------------------------------------
 
 // function foundAllMatches() {
-//   if (matchCounter == randomMkCharacters.length / 2) {
+//   if (matchCounter == randomGameCharacter.length / 2) {
 //     return true;
 //   } else {
 //     return false;
@@ -145,8 +142,6 @@
 
 // memoryCards.forEach((card) => card.addEventListener("click", flipMemoryCard));
 
-
-
 // // ------------------------------------------------------------------------------------------
 
 // // let memoryGameContainer = document.querySelector(".memory-game");
@@ -177,21 +172,21 @@
 //   // console.log(p.innerHTML);
 //   p.innerHTML = "";
 
-//    randomMkCharacters = [...mkCharacters.slice(0,num / 2) , ...mkCharacters.slice(0, num / 2) ];
+//    randomGameCharacter = [...gameCharacterArray.slice(0,num / 2) , ...gameCharacterArray.slice(0, num / 2) ];
 //   // console.log(testing)
 
-//   // randomMkCharacters = mkCharacters.slice(0, num / 2);
+//   // randomGameCharacter = gameCharacterArray.slice(0, num / 2);
 
-//   for (let i = 0; i < randomMkCharacters.length; i++) {
-//     let j = Math.floor(Math.random() * randomMkCharacters.length);
-//     let temp = randomMkCharacters[i];
-//     randomMkCharacters[i] = randomMkCharacters[j];
-//     randomMkCharacters[j] = temp;
+//   for (let i = 0; i < randomGameCharacter.length; i++) {
+//     let j = Math.floor(Math.random() * randomGameCharacter.length);
+//     let temp = randomGameCharacter[i];
+//     randomGameCharacter[i] = randomGameCharacter[j];
+//     randomGameCharacter[j] = temp;
 //   }
 
 //   for (let i = 0; i < num; i++) {
-//     p.innerHTML += `<div class="memory-card${i}" data-name="${randomMkCharacters[i]}" onclick='flipMemoryCard(${i})' >
-//     <img class="front-face" src="./src/${randomMkCharacters[i]}.png"/>
+//     p.innerHTML += `<div class="memory-card${i}" data-name="${randomGameCharacter[i]}" onclick='flipMemoryCard(${i})' >
+//     <img class="front-face" src="./src/${randomGameCharacter[i]}.png"/>
 //     <img class="back-face" src="./src/mk5.png" alt="Mortal Combat" />
 //   </div>`;
 //   }
@@ -209,74 +204,54 @@
 //   shuffleMemoryCards,
 // };
 
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
+// v
 
-
-
-//  
-
-const mkCharacters = [
+const gameCharacterArray = [
   "Johnny",
-  // "Johnny",
   "kano",
-  // "kano",
-  // "Kitana",
   "Kitana",
-  // "Raiden",
   "Raiden",
-  // "Scorpion",
   "Scorpion",
-  // "Sonya",
   "Sonya",
 ];
 
-for (let i = 0; i < mkCharacters.length; i++) {
-  let j = Math.floor(Math.random() * mkCharacters.length);
-  let temp = mkCharacters[i];
-  mkCharacters[i] = mkCharacters[j];
-  mkCharacters[j] = temp;
+for (let i = 0; i < gameCharacterArray.length; i++) {
+  let j = Math.floor(Math.random() * gameCharacterArray.length);
+  let temp = gameCharacterArray[i];
+  gameCharacterArray[i] = gameCharacterArray[j];
+  gameCharacterArray[j] = temp;
 }
 
-let randomMkCharacters = [];
-
-
+let randomGameCharacter = [];
 
 let matchCounter = 0;
 let isCardFlipped = false;
 let lockBoard = false;
 let cardOne, cardTwo;
 
-// --------------------------------------------------------------------------------------
-
-// (function beginShuffle() {
-//   shuffleMemoryCards();
-// })();
-
-// ---------------------------------------------------------------------------------------
-
-// function shuffleMemoryCards() {
-//   memoryCards.forEach((card) => {
-//     let randomPosition = Math.floor(Math.random() * 12);
-//     card.style.order = randomPosition;
-//   });
-// }
-
-// --------------------------------------------------------------------------------------
-
 function flipMemoryCard(num) {
-  
-
-  // console.log(num);
   const memoryCards = document.querySelector(`.memory-card${num}`);
-  // memoryCards.classList
-  // console.log(memoryCards);
-  if (lockBoard) {
-    return;
-  }
 
-  if (memoryCards === cardOne) {
-    return;
-  }
-  // console.log(memoryCards)
+  if (lockBoard) return;
+  if (memoryCards === cardOne) return;
 
   memoryCards.classList.add("flip");
 
@@ -292,7 +267,6 @@ function flipMemoryCard(num) {
   matchMemoryCards(cardOne.dataset.name, cardTwo.dataset.name);
 }
 
-// -----------------------------------------------------------------------
 function matchMemoryCards(firstCard, secondCard) {
   let foundMatch = firstCard === secondCard;
 
@@ -303,7 +277,6 @@ function matchMemoryCards(firstCard, secondCard) {
     unflipCards();
   }
 }
-// ---------------------------------------------------------------------------
 
 function countMatches() {
   matchCounter = matchCounter + 1;
@@ -317,17 +290,13 @@ function countMatches() {
   }
 }
 
-// --------------------------------------------------------------------------
-
 function foundAllMatches() {
-  if (matchCounter == randomMkCharacters.length / 2) {
+  if (matchCounter == randomGameCharacter.length / 2) {
     return true;
   } else {
     return false;
   }
 }
-
-// ----------------------------------------------------------------------------
 
 function disableCardClick() {
   cardOne.removeEventListener("click", flipMemoryCard);
@@ -336,14 +305,10 @@ function disableCardClick() {
   resetBoard();
 }
 
-// ----------------------------------------------------------------------------------
-
 function resetBoard() {
   [isCardFlipped, lockBoard] = [false, false];
   [cardOne, cardTwo] = [null, null];
 }
-
-// -------------------------------------------------------------------------------------
 
 function unflipCards() {
   lockBoard = true;
@@ -357,19 +322,10 @@ function unflipCards() {
   return true;
 }
 
-// ---------------------------------------------------------------------------------------
-
 memoryCards.forEach((card) => card.addEventListener("click", flipMemoryCard));
-
-
-
-// ------------------------------------------------------------------------------------------
-
-// let memoryGameContainer = document.querySelector(".memory-game");
 
 function displayCardsDiv() {
   let value = document.querySelector("#grid").value;
-  // console.log(value);
   let num = 0;
 
   const div = document.querySelector(".tester");
@@ -390,31 +346,29 @@ function displayCardsDiv() {
   }
 
   let p = document.querySelector(".tester");
-  // console.log(p.innerHTML);
   p.innerHTML = "";
 
-   randomMkCharacters = [...mkCharacters.slice(0,num / 2) , ...mkCharacters.slice(0, num / 2) ];
-  // console.log(testing)
+  randomGameCharacter = [
+    ...gameCharacterArray.slice(0, num / 2),
+    ...gameCharacterArray.slice(0, num / 2),
+  ];
 
-  // randomMkCharacters = mkCharacters.slice(0, num / 2);
-
-  for (let i = 0; i < randomMkCharacters.length; i++) {
-    let j = Math.floor(Math.random() * randomMkCharacters.length);
-    let temp = randomMkCharacters[i];
-    randomMkCharacters[i] = randomMkCharacters[j];
-    randomMkCharacters[j] = temp;
+  for (let i = 0; i < randomGameCharacter.length; i++) {
+    let j = Math.floor(Math.random() * randomGameCharacter.length);
+    let temp = randomGameCharacter[i];
+    randomGameCharacter[i] = randomGameCharacter[j];
+    randomGameCharacter[j] = temp;
   }
 
   for (let i = 0; i < num; i++) {
-    p.innerHTML += `<div class="memory-card${i}" data-name="${randomMkCharacters[i]}" onclick='flipMemoryCard(${i})' >
-    <img class="front-face" src="./src/${randomMkCharacters[i]}.png"/>
+    p.innerHTML += `<div class="memory-card${i}" data-name="${randomGameCharacter[i]}" onclick='flipMemoryCard(${i})' >
+    <img class="front-face" src="./src/${randomGameCharacter[i]}.png"/>
     <img class="back-face" src="./src/mk5.png" alt="Mortal Combat" />
   </div>`;
   }
 }
 displayCardsDiv();
 
-// --------------------------------------------------------------------------------------------------------------------------
 module.exports = {
   memoryCards,
   matchMemoryCards,
@@ -423,4 +377,5 @@ module.exports = {
   unflipCards,
   resetBoard,
   shuffleMemoryCards,
+  displayCardsDiv,
 };
