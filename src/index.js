@@ -247,6 +247,7 @@ let isCardFlipped = false;
 let lockBoard = false;
 let cardOne, cardTwo;
 
+
 function flipMemoryCard(num) {
   const memoryCards = document.querySelector(`.memory-card${num}`);
 
@@ -265,6 +266,8 @@ function flipMemoryCard(num) {
   }
 
   matchMemoryCards(cardOne.dataset.name, cardTwo.dataset.name);
+  memoryCards.forEach((card) => card.addEventListener("click", flipMemoryCard));
+
 }
 
 function matchMemoryCards(firstCard, secondCard) {
@@ -322,7 +325,6 @@ function unflipCards() {
   return true;
 }
 
-memoryCards.forEach((card) => card.addEventListener("click", flipMemoryCard));
 
 function displayCardsDiv() {
   let value = document.querySelector("#grid").value;
@@ -369,13 +371,13 @@ function displayCardsDiv() {
 }
 displayCardsDiv();
 
-module.exports = {
-  memoryCards,
+module.exports ={
+  
   matchMemoryCards,
   isCardFlipped,
   disableCardClick,
   unflipCards,
   resetBoard,
-  shuffleMemoryCards,
   displayCardsDiv,
+  
 };
