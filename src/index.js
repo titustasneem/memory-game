@@ -18,7 +18,6 @@
 // // const memoryCards = document.querySelectorAll(".memory-card");
 // const firstDiv = document.querySelector(`.memory-card`);
 
-
 // let matchCounter = 0;
 // let isCardFlipped = false;
 // let lockBoard = false;
@@ -198,7 +197,6 @@
 
 // // --------------------------------------------------------------------------------------------------------------------------
 
-// v 
 // v
 // v
 // v
@@ -212,28 +210,34 @@
 // v
 // v
 // v
-
+// v
 
 const mkCharacters = [
   "Johnny",
-  "Johnny",
+  // "Johnny",
   "kano",
-  "kano",
+  // "kano",
+  // "Kitana",
   "Kitana",
-  "Kitana",
+  // "Raiden",
   "Raiden",
-  "Raiden",
+  // "Scorpion",
   "Scorpion",
-  "Scorpion",
-  "Sonya",
+  // "Sonya",
   "Sonya",
 ];
+
+for (let i = 0; i < mkCharacters.length; i++) {
+  let j = Math.floor(Math.random() * mkCharacters.length);
+  let temp = mkCharacters[i];
+  mkCharacters[i] = mkCharacters[j];
+  mkCharacters[j] = temp;
+}
 
 let randomMkCharacters = [];
 
 // const memoryCards = document.querySelectorAll(".memory-card");
 const firstDiv = document.querySelector(`.memory-card`);
-
 
 let matchCounter = 0;
 let isCardFlipped = false;
@@ -242,22 +246,28 @@ let cardOne, cardTwo;
 
 // --------------------------------------------------------------------------------------
 
-(function beginShuffle() {
-  shuffleMemoryCards();
-})();
+// (function beginShuffle() {
+//   shuffleMemoryCards();
+// })();
 
 // ---------------------------------------------------------------------------------------
 
-function shuffleMemoryCards() {
-  memoryCards.forEach((card) => {
-    let randomPosition = Math.floor(Math.random() * 12);
-    card.style.order = randomPosition;
-  });
-}
+// function shuffleMemoryCards() {
+//   memoryCards.forEach((card) => {
+//     let randomPosition = Math.floor(Math.random() * 12);
+//     card.style.order = randomPosition;
+//   });
+// }
 
 // --------------------------------------------------------------------------------------
 
 function flipMemoryCard(num) {
+  // let generateRandomCharacter =
+  //   Math.random().toString(36).substring(2, 15) +
+  //   Math.random().toString(36).substring(2, 15);
+
+  // console.log(generateRandomCharacter);
+
   // console.log(num);
   const firstDiv = document.querySelector(`.memory-card${num}`);
   // firstDiv.classList
@@ -313,7 +323,7 @@ function countMatches() {
 // --------------------------------------------------------------------------
 
 function foundAllMatches() {
-  if (matchCounter == memoryCards.length / 2) {
+  if (matchCounter == randomMkCharacters.length / 2) {
     return true;
   } else {
     return false;
@@ -394,7 +404,10 @@ function displayCardsDiv() {
   // console.log(p.innerHTML);
   p.innerHTML = "";
 
-  randomMkCharacters = mkCharacters.slice(0, num);
+   randomMkCharacters = [...mkCharacters.slice(0,num / 2) , ...mkCharacters.slice(0, num / 2) ];
+  // console.log(testing)
+
+  // randomMkCharacters = mkCharacters.slice(0, num / 2);
 
   for (let i = 0; i < randomMkCharacters.length; i++) {
     let j = Math.floor(Math.random() * randomMkCharacters.length);
@@ -413,24 +426,3 @@ function displayCardsDiv() {
 displayCardsDiv();
 
 // --------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
