@@ -2,28 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <title>Memory Game</title>
-
     <link rel="stylesheet" href="./src/style.css" />
   </head>
-
   <body>
-         <label class="changeGrid">change Grid</label>
-        
-        <select  id="grid" name="grid" onchange="displayCardsDiv()">
-          <option value="" id="">select option</option>
-             <option value="first option" id="first">2x2</option>
-             <option value="second option" id="second">3x2</option>
-             <option value="third option" id="third">4x3</option>
-         </select> 
-        <br />
-        
-        <div id="score">Score:</div>
-<!-- <button onclick="test()">test-btn</button>
-<div class="tester">k</div> -->
-
-   
+    <label class="changeGrid">Change Grid Size</label>
+    <select id="grid" name="grid" onchange="displayCardsDiv()">
+      <option value="" id="selectOption">select option</option>
+      <option value="first option" id="first">2x2</option>
+      <option value="second option" id="second">3x2</option>
+      <option value="third option" id="third">4x3</option>
+    </select>
+    <br />
+    <!-- <div id="score">Score:</div> -->
+    <div class="tester"></div>
     <script src="./src/index.js"></script>
   </body>
 </html>
