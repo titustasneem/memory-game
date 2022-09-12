@@ -102,13 +102,14 @@ function displayCardsDiv() {
   let value = document.querySelector("#grid").value;
   let num = 0;
 
-  if (value === "") {
-    return false;
-  }
+  // if (value === "") {
+  //   return false;
+  // }
 
   if (value === "first option") {
     num = 4;
     memoryGame.style.gridTemplateColumns = "repeat(2, auto)";
+    // console.log(memoryGame.children);
   } else if (value === "second option") {
     num = 6;
     memoryGame.style.gridTemplateColumns = "repeat(3, auto)";
@@ -149,4 +150,5 @@ module.exports = {
   resetBoard,
   displayCardsDiv,
   flipMemoryCard,
+  memoryGame,
 };
