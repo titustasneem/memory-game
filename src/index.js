@@ -325,12 +325,10 @@ function unflipCards() {
   return true;
 }
 
-
+const memoryGame = document.querySelector(".memory-game");
 function displayCardsDiv() {
   let value = document.querySelector("#grid").value;
   let num = 0;
-
-  const div = document.querySelector(".tester");
 
   if (value === "") {
     return false;
@@ -338,17 +336,17 @@ function displayCardsDiv() {
 
   if (value === "first option") {
     num = 4;
-    div.style.gridTemplateColumns = "repeat(2, auto)";
+    memoryGame.style.gridTemplateColumns = "repeat(2, auto)";
   } else if (value === "second option") {
     num = 6;
-    div.style.gridTemplateColumns = "repeat(3, auto)";
+    memoryGame.style.gridTemplateColumns = "repeat(3, auto)";
   } else if (value === "third option") {
     num = 12;
-    div.style.gridTemplateColumns = "repeat(4, auto)";
+    memoryGame.style.gridTemplateColumns = "repeat(4, auto)";
   }
 
-  let p = document.querySelector(".tester");
-  p.innerHTML = "";
+  let generateCards = memoryGame;
+  generateCards.innerHTML = "";
 
   randomGameCharacter = [
     ...gameCharacterArray.slice(0, num / 2),
@@ -363,7 +361,7 @@ function displayCardsDiv() {
   }
 
   for (let i = 0; i < num; i++) {
-    p.innerHTML += `<div class="memory-card${i}" data-name="${randomGameCharacter[i]}" onclick='flipMemoryCard(${i})' >
+    generateCards.innerHTML += `<div class="memory-card${i}" data-name="${randomGameCharacter[i]}" onclick='flipMemoryCard(${i})' >
     <img class="front-face" src="./src/${randomGameCharacter[i]}.png"/>
     <img class="back-face" src="./src/mk5.png" alt="Mortal Combat" />
   </div>`;
@@ -379,5 +377,5 @@ module.exports ={
   unflipCards,
   resetBoard,
   displayCardsDiv,
-  
+  flipMemoryCard,
 };

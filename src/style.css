@@ -78,7 +78,7 @@ body {
   transform: rotateY(180deg);
 }
 
-.tester {
+.memory-game {
   display: grid;
   grid-template-columns: auto auto;
   width: 640px;
