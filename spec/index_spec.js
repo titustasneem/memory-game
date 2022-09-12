@@ -69,7 +69,7 @@ describe("displayCardsDiv", function () {
     expect(game.displayCardsDiv).toHaveBeenCalled();
   });
   it("should create that the grid has the right amount of .....", function () {
-    document.getElementById('first').click()
+    document.getElementById("first").click();
     expect(game.memoryGame.children.length).toBe(4);
   });
 });
