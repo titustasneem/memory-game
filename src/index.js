@@ -98,6 +98,7 @@ function unflipCards() {
 }
 
 const memoryGame = document.querySelector(".memory-game");
+
 function displayCardsDiv() {
   let value = document.querySelector("#grid").value;
   let num = 0;
@@ -135,6 +136,8 @@ function displayCardsDiv() {
   </div>`;
   }
 }
+
+
 displayCardsDiv();
 
 module.exports = {

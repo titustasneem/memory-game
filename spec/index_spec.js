@@ -1,11 +1,14 @@
 const jsdom = require("jsdom");
 const fs = require("fs");
 const { JSDOM } = jsdom;
-const index = fs.readFileSync("index.html", "utf-8");
-const { document } = new JSDOM(index).window;
+const { window } = new JSDOM();
+const { document } = window;
 global.document = document;
+document.body.innerHTML = fs.readFileSync("index.html", "utf-8");
 
 const game = require("../src/index");
+let selection = document.getElementById("grid");
+
 const gameCharacterArray = [
   "Johnny",
   "kano",
@@ -63,13 +66,19 @@ describe("flipMemoryCard function", () => {
 });
 
 describe("displayCardsDiv", function () {
-  it("should create a 2x2 grid when the displayCardsDiv function is called", function () {
-    spyOn(game, "displayCardsDiv");
+  it("should create a 2x2 grid with the length of 4 cards", function () {
+    selection.value = "first option";
     game.displayCardsDiv();
-    expect(game.displayCardsDiv).toHaveBeenCalled();
-  });
-  it("should create that the grid has the right amount of .....", function () {
-    document.getElementById("first").click();
     expect(game.memoryGame.children.length).toBe(4);
+  });
+  it("should create a 3x2 grid with the length of 6 cards", function () {
+    selection.value = "second option";
+    game.displayCardsDiv();
+    expect(game.memoryGame.children.length).toBe(6);
+  });
+  it("should create a 4x3 grid with the length of 12 cards", function () {
+    selection.value = "third option";
+    game.displayCardsDiv();
+    expect(game.memoryGame.children.length).toBe(12);
   });
 });
