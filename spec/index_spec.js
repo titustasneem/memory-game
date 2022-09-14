@@ -8,7 +8,6 @@ document.body.innerHTML = fs.readFileSync("index.html", "utf-8");
 
 const game = require("../src/index");
 let selection = document.getElementById("grid");
-// let cards = cardOne
 
 const gameCharacterArray = [
   "Johnny",
@@ -19,36 +18,10 @@ const gameCharacterArray = [
   "Sonya",
 ];
 
-
-// describe("flipMemoryCard", function () {
-//    beforeEach(()=> {
-//     document.querySelector("#grid").value = 4;
-
-//     game.displayCardsDiv()
-
-//    })
-//   it("should call the matchMemoryCards", function () {
-//     game.displayCardsDiv()
-
-//     spyOn(game, "matchMemoryCards");
-//     let num = 1
-//     const memoryCards = document.querySelector(`.memory-cards1`);
-//     // memoryCards.classList = 'hi';
-//       console.log(memoryCards.classList)
-
-//     game.flipMemoryCard(num)
-//     expect(game.matchMemoryCards).not.toHaveBeenCalled();
-//    });
-// });
-
-
-
-// -----------------------------------------------------------------------------------
-
 describe("matchMemoryCards", function () {
   it("should call the unflipCards if there is no match found", function () {
     spyOn(game, "unflipCards");
-      game.matchMemoryCards('Johnny', 'Johnny');
+    game.matchMemoryCards("Johnny", "Johnny");
     expect(game.unflipCards).not.toHaveBeenCalled();
   });
 });
@@ -65,7 +38,7 @@ describe("disableCardClick", () => {
     expect(game.resetBoard).not.toHaveBeenCalled();
   });
 });
-// -----------------------------------------------------------------------------------
+
 describe("gameCharacterArray", () => {
   beforeEach(() => {
     gameCharacters = [...gameCharacterArray];
@@ -83,6 +56,7 @@ describe("gameCharactersArray", () => {
     );
   });
 });
+
 describe("flipMemoryCard function", () => {
   it("should add an event listener to the cards and enable them to flip", () => {
     expect(game.flipMemoryCard).toBeDefined();
