@@ -19,7 +19,7 @@ const gameCharacterArray = [
 ];
 
 describe("matchMemoryCards", function () {
-  it("should call the unflipCards if there is no match found", function () {
+  it("should not call the unflipCards function since both the cards match", function () {
     spyOn(game, "unflipCards");
     game.matchMemoryCards("Johnny", "Johnny");
     expect(game.unflipCards).not.toHaveBeenCalled();
@@ -32,7 +32,7 @@ describe("disableCardClick", () => {
     memoryGame.innerHTML = gameCharacterArray[0];
     memoryGame.innerHTML = gameCharacterArray[1];
   });
-  it("should not call the reset board function since the cards do not match ", () => {
+  it("should not call the reset board function since the cards do not match and the card click does not get disabled", () => {
     spyOn(game, "resetBoard");
     game.disableCardClick();
     expect(game.resetBoard).not.toHaveBeenCalled();
