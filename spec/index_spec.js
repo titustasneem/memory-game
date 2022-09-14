@@ -8,6 +8,7 @@ document.body.innerHTML = fs.readFileSync("index.html", "utf-8");
 
 const game = require("../src/index");
 let selection = document.getElementById("grid");
+// let cards = cardOne
 
 const gameCharacterArray = [
   "Johnny",
@@ -18,30 +19,53 @@ const gameCharacterArray = [
   "Sonya",
 ];
 
-describe("disableCardClick", function () {
-  it("should disable the card click", function () {
-    spyOn(game, "disableCardClick");
-    game.disableCardClick();
-    expect(game.disableCardClick).toHaveBeenCalled();
-  });
-});
 
-describe("resetBoard", function () {
-  it("should reset the board", function () {
-    spyOn(game, "resetBoard");
-    game.resetBoard();
-    expect(game.resetBoard).toHaveBeenCalled();
-  });
-});
+// describe("flipMemoryCard", function () {
+//    beforeEach(()=> {
+//     document.querySelector("#grid").value = 4;
 
-describe("unflipCards", function () {
-  it("should unflip the cards", function () {
+//     game.displayCardsDiv()
+
+//    })
+//   it("should call the matchMemoryCards", function () {
+//     game.displayCardsDiv()
+
+//     spyOn(game, "matchMemoryCards");
+//     let num = 1
+//     const memoryCards = document.querySelector(`.memory-cards1`);
+//     // memoryCards.classList = 'hi';
+//       console.log(memoryCards.classList)
+
+//     game.flipMemoryCard(num)
+//     expect(game.matchMemoryCards).not.toHaveBeenCalled();
+//    });
+// });
+
+
+
+// -----------------------------------------------------------------------------------
+
+describe("matchMemoryCards", function () {
+  it("should call the unflipCards if there is no match found", function () {
     spyOn(game, "unflipCards");
-    game.unflipCards();
-    expect(game.unflipCards).toHaveBeenCalled();
+      game.matchMemoryCards('Johnny', 'Johnny');
+    expect(game.unflipCards).not.toHaveBeenCalled();
   });
 });
 
+describe("disableCardClick", () => {
+  beforeEach(() => {
+    const memoryGame = document.querySelector(".memory-game");
+    memoryGame.innerHTML = gameCharacterArray[0];
+    memoryGame.innerHTML = gameCharacterArray[1];
+  });
+  it("should not call the reset board function since the cards do not match ", () => {
+    spyOn(game, "resetBoard");
+    game.disableCardClick();
+    expect(game.resetBoard).not.toHaveBeenCalled();
+  });
+});
+// -----------------------------------------------------------------------------------
 describe("gameCharacterArray", () => {
   beforeEach(() => {
     gameCharacters = [...gameCharacterArray];

@@ -74,9 +74,10 @@ function foundAllMatches() {
 }
 
 function disableCardClick() {
-  cardOne.removeEventListener("click", flipMemoryCard);
-  cardTwo.removeEventListener("click", flipMemoryCard);
-
+  if (cardOne || cardTwo) {
+    cardOne.removeEventListener("click", flipMemoryCard);
+    cardTwo.removeEventListener("click", flipMemoryCard);
+  }
   resetBoard();
 }
 
@@ -137,7 +138,6 @@ function displayCardsDiv() {
   }
 }
 
-
 displayCardsDiv();
 
 module.exports = {
@@ -150,4 +150,3 @@ module.exports = {
   flipMemoryCard,
   memoryGame,
 };
-
