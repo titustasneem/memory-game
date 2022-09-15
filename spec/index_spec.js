@@ -1,59 +1,82 @@
 const jsdom = require("jsdom");
 const fs = require("fs");
 const { JSDOM } = jsdom;
-const index = fs.readFileSync("index.html", "utf-8");
-const { document } = new JSDOM(index).window;
+const { window } = new JSDOM();
+const { document } = window;
 global.document = document;
+document.body.innerHTML = fs.readFileSync("index.html", "utf-8");
 
 const game = require("../src/index");
+let selection = document.getElementById("grid");
 
-describe("memoryCards", function () {
-  it("should check if memoryCards is defined", function () {
-    expect(game.memoryCards).toBeDefined();
-  });
-  it("should add an eventListener to every card", function () {
-    spyOn(game, "memoryCards");
-    expect(game.memoryCards).toBeDefined();
-  });
-});
+const gameCharacterArray = [
+  "Johnny",
+  "kano",
+  "Kitana",
+  "Raiden",
+  "Scorpion",
+  "Sonya",
+];
 
-describe("flippedCards", function () {
-  it("should check flip the card onto the front-face when clicked on", function () {
-    expect(game.flippedCards).toBeDefined();
-  });
-});
-
-describe("disableCardClick", function () {
-  it("should disable the card click", function () {
-    spyOn(game, "disableCardClick");
-    game.disableCardClick();
-    expect(game.disableCardClick).toHaveBeenCalled();
-  });
-});
-
-describe("resetBoard", function () {
-  it("should reset the board", function () {
-    spyOn(game, "resetBoard");
-    game.resetBoard();
-    expect(game.resetBoard).toHaveBeenCalled();
-  });
-});
-
-describe("shuffleMemoryCards", function () {
-  it("should shuffle the memory cards", function () {
-    spyOn(game, "shuffleMemoryCards");
-    game.shuffleMemoryCards();
-    expect(game.shuffleMemoryCards).toHaveBeenCalled();
-  });
-});
-
-describe("unflipCards", function () {
-  it("should unflip the cards", function () {
-    const card1 = document.getElementsByClassName("memory-card")[0];
-    const card2 = document.getElementsByClassName("memory-card")[2];
+describe("matchMemoryCards", function () {
+  it("should not call the unflipCards function since both the cards match", function () {
     spyOn(game, "unflipCards");
-    game.unflipCards();
-    game.matchMemoryCards(card1.dataset.name, card2.dataset.name);
-    expect(game.unflipCards).toHaveBeenCalled();
+    game.matchMemoryCards("Johnny", "Johnny");
+    expect(game.unflipCards).not.toHaveBeenCalled();
+  });
+});
+
+describe("disableCardClick", () => {
+  beforeEach(() => {
+    const memoryGame = document.querySelector(".memory-game");
+    memoryGame.innerHTML = gameCharacterArray[0];
+    memoryGame.innerHTML = gameCharacterArray[1];
+  });
+  it("should not call the reset board function since the cards do not match and the card click does not get disabled", () => {
+    spyOn(game, "resetBoard");
+    game.disableCardClick();
+    expect(game.resetBoard).not.toHaveBeenCalled();
+  });
+});
+
+describe("gameCharacterArray", () => {
+  beforeEach(() => {
+    gameCharacters = [...gameCharacterArray];
+  });
+
+  it("should contain an array of all the game characters", () => {
+    expect(gameCharacters.length).toBe(6);
+  });
+});
+
+describe("gameCharactersArray", () => {
+  it("should be shuffled in any random order", () => {
+    expect([...gameCharacterArray]).toMatch(
+      /Johnny|kano|Kitana|Raiden| Scorpion|Sonya/
+    );
+  });
+});
+
+describe("flipMemoryCard function", () => {
+  it("should add an event listener to the cards and enable them to flip", () => {
+    expect(game.flipMemoryCard).toBeDefined();
+  });
+});
+
+describe("displayCardsDiv", function () {
+  it("should create a 2x2 grid with the length of 4 cards", function () {
+    selection.value = "first option";
+    game.displayCardsDiv();
+    expect(game.memoryGame.children.length).toBe(4);
+  });
+  it("should create a 3x2 grid with the length of 6 cards", function () {
+    selection.value = "second option";
+    game.displayCardsDiv();
+    expect(game.memoryGame.children.length).toBe(6);
+  });
+  it("should create a 4x3 grid with the length of 12 cards", function () {
+    selection.value = "third option";
+    game.displayCardsDiv();
+    expect(game.memoryGame.children.length).toBe(12);
   });
 });
